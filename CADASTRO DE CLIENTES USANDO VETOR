@@ -1,0 +1,101 @@
+algoritmo "CADASTRO DE CLIENTES"
+// Função : CADASTRAR E PESQUISAR CLIENTES
+// Autor : MEIRINALDO JÚNIOR
+// Data : 07/04/2015
+// Seção de Declarações
+var
+nomes: vetor [1..5] de literal
+cpfs: vetor [1..5] de literal
+salarios: vetor [1..5] de real
+opcao: inteiro
+idcliente: inteiro
+contator: inteiro
+numeroBusca: inteiro
+inicio
+repita
+   escreval("###################################################")
+   escreval("#Olá, para começar digite o número correspondente.#")
+   escreval("#1) Cadastrar Cliente                             #")
+   escreval("#2) Listar Clientes Cadastrados                   #")
+   escreval("#3) Pesquisar Cliente                             #")
+   escreval("#0) Sair do Sistema                               #")
+   escreval("###################################################")
+   leia (opcao)
+
+   se (opcao<>1) e (opcao<>2) e (opcao<>3) e (opcao<>0) entao
+      limpatela
+      escreval("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+      escreval("opção invalida, tente Novamente")
+      escreval("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+   senao
+
+      se opcao = 1 entao
+         LIMPATELA
+         idcliente <- idcliente +1
+         se idcliente > 5  entao
+          escreval("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+          escreval ("Pedimos Desculpas, o numero limite de cadastro foi excedido")
+          escreval("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+          idcliente <- 5
+         senao
+         escreval("Cadastro de Clientes")
+         escreval("___________________________")
+         escreval("ID do Cliente: ",idcliente )
+         escreval("Nome: ")
+         leia (nomes[idcliente])
+         escreval("CPF: ")
+         leia (cpfs[idcliente])
+         escreval("Salário: ")
+         leia (salarios[idcliente])
+         LIMPATELA
+         escreval("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+         escreval("CADASTRO EFETUADO COM SUCESSO")
+         escreval("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+         fimse
+      fimse
+
+      se opcao = 2 entao
+         escreval("Relatório de Clientes cadastrados ")
+         para idcliente de 1 ate 5 faca
+            se nomes[idcliente] <> "" entao
+
+               escreval("___________________________")
+               escreval("Indentificação do Cliente: ")
+               escreval("Nome: ", nomes[idcliente])
+               escreval("CPF: ", cpfs[idcliente])
+               escreval("Salário: ", salarios[idcliente])
+
+            fimse
+         fimpara
+      fimse
+
+      se opcao = 3 entao
+         limpatela
+         escreval("Pesquisa de Clientes")
+         escreval("_________________________")
+         escreval("Por favor, insira a Identidicação do cliente:    ")
+         leia (numeroBusca)
+           se (numeroBusca>=1) e (numeroBusca<=5) entao
+             limpatela
+             se nomes[numeroBusca] = "" entao
+             escreval ("######################")
+             escreval ("Cliente não Cadastrado")
+             escreval ("######################")
+             senao
+             escreval("Cliente Encontrado")
+             escreval("__________________")
+             escreval("Nome: ", nomes[numeroBusca])
+             escreval("CPF: ", cpfs[numeroBusca])
+             escreval("Salário: ", salarios[numeroBusca])
+             senao
+             escreval("Cliente não encotrado :(")
+             fimse
+          senao
+          escreval("Identificação Invalida, tente novamente!")
+           fimse
+      fimse
+   fimse
+ate opcao = 0
+limpatela
+
+fimalgoritmo
