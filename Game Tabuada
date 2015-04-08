@@ -1,0 +1,61 @@
+algoritmo "Game Tabuada"
+// Função : Desenvolver Habilidades Matématicas
+// Autor :
+// Data : 21/03/2015
+// Seção de Declarações
+var
+contador: inteiro
+numeroDoUsuario: inteiro
+numeroDaRespostaDoUsuario: inteiro
+chances: inteiro
+resolucaoDaTabuadoDoNumeroEscolhido: inteiro
+erros: inteiro
+inicio
+
+escreval ("Olá, Vamos Brincar com a tabuada? ")
+escreval ("Para Começar digite o número da tabuada que você quer resolver: ")
+leia (numeroDoUsuario)
+
+se numeroDoUsuario > 10  entao
+repita
+escreval("Caracter Invalido, por favor insira novamente um válido")
+leia (numeroDoUsuario)
+ate numeroDoUsuario < 10
+fimse
+
+
+repita
+   contador <- contador +1
+
+   resolucaoDaTabuadoDoNumeroEscolhido <- numeroDoUsuario*contador
+
+   escreva( numeroDoUsuario, " * ", contador, " = ")
+   leia (numeroDaRespostaDoUsuario)
+
+   se numeroDaRespostaDoUsuario = resolucaoDaTabuadoDoNumeroEscolhido entao
+      escreval ("Boa Você Acertou :D")
+   senao
+   chances <- 3
+      repita
+            erros <- erros +1
+            chances <- chances - 1
+            escreval("Você errou, tente novamente!, Você tem: ", chances, " Chances" )
+            escreva( numeroDoUsuario, " * ", contador, " = ")
+            leia (numeroDaRespostaDoUsuario)
+          ate (numeroDaRespostaDoUsuario = resolucaoDaTabuadoDoNumeroEscolhido) ou (chances < 1)
+      se numeroDaRespostaDoUsuario = resolucaoDaTabuadoDoNumeroEscolhido entao
+      escreval ("Boa Você Acertou :D")
+      chances <- 3
+      fimse
+      se chances < 2 entao
+         chances <- 0
+         escreval("Suas Chances Acabaram :(, O resultado correto é: ", resolucaoDaTabuadoDoNumeroEscolhido)
+      fimse
+      fimse
+
+ate contador > 9
+
+   escreval
+   escreval("PARABÉNS VOCÊ CONCLUIU :D")
+   escreval("VOCÊ ERROU: ",erros, " VEZES" )
+fimalgoritmo
