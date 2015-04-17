@@ -1,0 +1,238 @@
+algoritmo "SISTEMA DE CADASTRO DE ALUNOS"
+// Função : CADASTRAR ALUNOS
+// Autor : MEIRINALDO JÚNIOR
+// Data : 13/04/2015
+// Seção de Declarações
+var
+NomesDosAlunos: vetor [1..40] de caracter
+notas1        : vetor [1..40] de real
+notas2        : vetor [1..40] de real
+medias        : vetor [1..40] de real
+MatriculaDoAluno: vetor [1..40] de inteiro
+FrequnciaDoAluno: vetor [1..40] de inteiro
+opcao, opcao6,contador, contadorAlternativo,opcaodeapagartodos, contadorDEBUSCA, contadorEXCLUSAODOALUNO, contadorBUSCADEMEDIA,ContadorDaChamada, ContadorEditarAluno   : inteiro
+media         : real
+nomeDeBusca,MatriculaDeExlusao, nomedoalunoasereditado,nomeEdicao, PresenteOuFalta  : caracter
+Nota1Edicao, Nota2Edicao: real
+
+inicio
+contador <- 0
+repita
+
+   escreval("####################################")
+   escreval("1) Cadastrar Aluno")
+   escreval("2) Realizar Chamada")
+   Escreval("3) Listar Médias e lista de frequência do aluno")
+   escreval("4) Ranking Melhor Nota")
+   escreval("5) Pesquisar média por nome do aluno")
+   escreval("6) Deletar Aluno")
+   escreval("7) Apagar Todos")
+   escreval("8) Editar Cadastro de Aluno")
+   escreval("####################################")
+   leia(opcao)
+   limpatela
+
+   se opcao = 1 entao
+
+      se contador >= 40 entao
+         escreval ("Número de matriculas esgotado")
+
+      senao
+
+         contador <- contador + 1
+         limpatela
+         escreval("Cadastro de Cliente")
+         escreval("-------------------")
+         escreval("Número da Matricula: ", contador)
+         Escreval("insira o nome do Aluno: ")
+         leia (nomesDosAlunos[contador])
+         repita
+            se (notas1[contador]>10) e (notas2[contador]>10) entao
+               escreval("Nota Inserida Inválida, A nota deve ser menor ou igual a 10")
+
+               escreval("-----------Tente Novamente---------")
+               Escreval("Digite a nota 1: ")
+               leia (notas1[contador])
+               escreval("Digite a nota 2: ")
+               leia (notas2[contador])
+            senao
+               Escreval("Digite a nota 1: ")
+               leia (notas1[contador])
+               escreval("Digite a nota 2: ")
+               leia (notas2[contador])
+
+            fimse
+         ate (notas1[contador]<=10) e (notas2[contador]<=10)
+      fimse
+      escreval ("Aluno Cadastrado com Sucesso...")
+   fimse
+   se opcao = 2 entao
+      limpatela
+      escreval("Realizar Chamada")
+      escreval("-------------------")
+
+      escreval("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+      escreval("RECURSO EM IMPLEMENTAÇÃO!!!")
+      escreval("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+   fimse
+   se opcao = 3 entao
+
+      limpatela
+      escreval("Listar Médias e lista de frequência do aluno")
+
+      para contadorDEBUSCA de 1 ate 40 faca
+         se NomesDosAlunos[contadorDEBUSCA] <> "" entao
+            escreval ("-------------------------------------------------")
+            escreval ("Número da Matricula: ", contadorDEBUSCA)
+            escreval ("Nome :", NomesDosAlunos[contadorDEBUSCA])
+            escreval ("Nota 1 :", notas1[contadorDEBUSCA])
+            escreval ("Nota 2: ", notas2[contadorDEBUSCA])
+            media <- (notas1[contadorDEBUSCA] + notas2[contadorDEBUSCA])/2
+            escreval ("Média :", media)
+
+
+            se media >= 9 entao
+               escreval ("Conceito A")
+            fimse
+
+            se (media>=8) e (media<9) entao
+               escreval("Conceito B")
+            fimse
+
+            se (media>=6) e (media < 8) entao
+               escreval ("Conceito C")
+            fimse
+
+            se media<6 entao
+               escreval ("Conceito D")
+            fimse
+            escreval ("-------------------------------------------------")
+         fimse
+      fimpara
+   fimse
+   se opcao = 4 entao
+      limpatela
+      escreval("Melhores Médias")
+      para contador de 1 ate 40 faca
+         se NomesDosAlunos[contador] <> "" entao
+            media <- (notas1[contador] + notas2[contador])/2
+            se media >= 9 entao
+               escreval ("_______________________")
+               escreval ("Número da Matricula: ", contador)
+               escreval ("Nome :", NomesDosAlunos[contador])
+               escreval ("Média :", media)
+            fimse
+         fimse
+      fimpara
+   fimse
+   se opcao = 5 entao
+      limpatela
+      escreval("Pesquisar Média por Aluno")
+
+      escreval("Digite o nome do aluno: ")
+      leia (nomeDeBusca)
+
+      para contadorBUSCADEMEDIA de 1 ate 40 faca
+
+         se nomeDeBusca = NomesDosAlunos[contador] entao
+
+            escreval("Aluno Encontrado")
+            escreval ("_______________________")
+            escreval ("Número da Matricula: ", contadorBUSCADEMEDIA)
+            escreval ("Nome :", NomesDosAlunos[contadorBUSCADEMEDIA])
+            escreval ("Nota 1 :", notas1[contadorBUSCADEMEDIA])
+            escreval ("Nota 2: ", notas2[contadorBUSCADEMEDIA])
+            media <- (notas1[contadorBUSCADEMEDIA] + notas2[contadorBUSCADEMEDIA])/2
+            escreval ("Média :", media)
+
+
+         fimse
+      fimpara
+   fimse
+   se opcao = 6 entao
+      limpatela
+      escreval ("Deletar Aluno")
+      escreval ("-------------------")
+      escreval("Digite o nome do aluno a ser exluido!")
+      leia(MatriculaDeExlusao)
+      para contadorEXCLUSAODOALUNO de 1 ate 40 faca
+         se NomesDosAlunos[contadorEXCLUSAODOALUNO] <> "" entao
+            se MatriculaDeExlusao = NomesDosAlunos[contadorEXCLUSAODOALUNO] entao
+               NomesDosAlunos[contadorEXCLUSAODOALUNO] <- ""
+               notas1[contadorEXCLUSAODOALUNO] <- 0
+               notas2[contadorEXCLUSAODOALUNO] <- 0
+            fimse
+         fimse
+      fimpara
+      escreval ("Aluno Deletado..!!!")
+   fimescolha
+
+fimse
+se opcao = 7  entao
+   limpatela
+   escreval("Tem Certeza do que está fazendo?")
+   escreval("Tecle 1 para cancelar e voltar para o menu principal.")
+   escreval("Tecle 2 se tem certeza que quer apagar todos.")
+   leia(opcaodeapagartodos)
+   escolha opcaodeapagartodos
+   caso 1
+
+   caso 2
+      para contadorAlternativo de 1 ate 40  faca
+         NomesDosAlunos[contadorAlternativo] <- ""
+         notas1[contadorAlternativo] <- 0
+         notas2[contadorAlternativo] <- 0
+
+      fimpara
+      contador <- 0
+      escreval("Exlusão feita com sucesso...!!!")
+   fimescolha
+
+
+fimse
+se opcao = 8 entao
+   limpatela
+   escreval ("Editar Aluno")
+   escreval ("---------------------")
+   escreval ("Digite o nome do aluno a ser editado...!")
+   leia(nomedoalunoasereditado)
+   para ContadorEditarAluno de 1 ate 40 faca
+      se NomesDosAlunos[ContadorEditarAluno] <> "" entao
+         se nomedoalunoasereditado = NomesDosAlunos[ContadorEditarAluno] entao
+            escreval ("Novo nome:")
+            leia(nomeEdicao)
+            NomesDosAlunos[ContadorEditarAluno] <- nomeEdicao
+
+            escreval ("Novs nota 1:")
+            leia(Nota1Edicao)
+            notas1[ContadorEditarAluno] <- Nota1Edicao
+            escreval ("Novs nota 2:")
+            leia(Nota2Edicao)
+            notas2[ContadorEditarAluno] <- Nota2Edicao
+            limpatela
+            escreval("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+            escreval("Registro Editado com Sucesso")
+            escreval("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+         senao
+            se (nomeEdicao<>"") ou (Nota1Edicao<>0.0) entao
+            fimse
+            escreval ("Aluno não encontrado :(")
+         fimse
+      fimse
+   fimpara
+
+fimse
+
+se (opcao<>1) e (opcao<>2) e (opcao<>3) e (opcao<>4) e (opcao<>5) e (opcao<>6) e (opcao<>7) e (opcao<>8) entao
+   limpatela
+   escreval("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+   escreval("Opção Inválida, tente novamente!")
+   escreval("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+fimse
+
+
+
+
+ate opcao = 0
+limpatela
+fimalgoritmo
